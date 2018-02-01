@@ -1,11 +1,16 @@
 package pobj.motx.tme1;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Emplacement
 {
 	private List<Case> lettres;
 	
+	public Emplacement()
+	{
+		lettres=new ArrayList<Case>();
+	}
 	
 	public String toString()
 	{
@@ -21,4 +26,10 @@ public class Emplacement
 	{
 		return lettres.size(); 
 	}
+	
+	public void add(Case c1)
+	{
+		lettres.add(c1);
+	}
+	
 }
