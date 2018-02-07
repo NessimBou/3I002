@@ -3,11 +3,23 @@ package pobj.motx.tme1;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * *Classe permettant de trouver tous les emplacements de mots d'une grille 
+ *
+ * @author NessimFabien
+ *
+ */
 public class GrillePlaces {
-	
+	/** une Grille **/
 	private Grille gr;
+	
+	/**Liste contenant les places des mots **/
 	private List<Emplacement> places;
+	
+	/** **/
 	private int horiz;
+	
+	
 	
 	private List<Case> getLig(int lig)
 	{
@@ -53,6 +65,10 @@ public class GrillePlaces {
 		}
 	}
 	
+	/** Calcule les emplacements de mots que contient la grille
+	 * 
+	 * @param grille Une grille remplie de mots ou pas 
+	 */
 	public GrillePlaces (Grille grille)
 	{
 		gr=grille;
@@ -69,16 +85,29 @@ public class GrillePlaces {
 		int verti=places.size()-horiz;
 	}
 	
+	/** Recupere une liste de d'emplacement
+	 * 
+	 * @return place la liste des emplacements de la grille
+	 */
 	public List<Emplacement> getPlaces()
 	{
 		return places;
 	}
 	
+	/** Renvoie le nombre de mots horizontal
+	 * 
+	 * @return horiz Le nombre de mots horizontal
+	 */
 	public int getNbHorizontal()
 	{
 		return horiz;
 	}
 	
+	
+	/**	Affiche les emplacements de mots détécté
+	 * 
+	 * @return s un mot
+	 */
 	public String toString()
 	{
 		String s="";
@@ -89,3 +118,4 @@ public class GrillePlaces {
 		return s;
 	}
 }
+

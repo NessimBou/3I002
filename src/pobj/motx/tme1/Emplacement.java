@@ -3,33 +3,54 @@ package pobj.motx.tme1;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Emplacement
-{
+/** Classe Permettant l'identification des mots dans la grille
+ * 
+ * @author NessimFabien
+ *
+ */
+public class Emplacement {
+	/** Liste de case **/
 	private List<Case> lettres;
 	
-	public Emplacement()
-	{
-		lettres=new ArrayList<Case>();
+	/** Initialisation de la liste de case
+	 * 
+	 */
+	public Emplacement(){
+		lettres = new ArrayList<Case>();
+		
 	}
-	
-	public String toString()
-	{
-		String s="";
-		for (int i=0;i<lettres.size();i++)
-		{
-			s=s+lettres.get(i);
+	/** Affiche le mot de l'emplacement
+	 * 
+	 * @return mot le mot de l'emplacement à afficher
+	 */
+	public String toString(){
+		String mot = "";
+		for(int i = 0 ; i < lettres.size(); i++){
+			mot += lettres.get(i);
 		}
-		return s;
+		
+		return mot;
+		
 	}
 	
-	public int size()
-	{
-		return lettres.size(); 
+	/**Renvoie la taille de l'emplacement du mot
+	 * 
+	 * @return lettres.size() la taille de l'emplacement du mot
+	 */
+	public int size(){
+		return lettres.size();
 	}
 	
+	
+	/** Ajoute la valeur du parametre à la liste
+	 * 
+	 * @param c1 Valeur de la case à rajouter
+	 */
 	public void add(Case c1)
 	{
 		lettres.add(c1);
 	}
 	
+
+
 }
