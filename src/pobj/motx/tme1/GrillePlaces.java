@@ -20,6 +20,25 @@ public class GrillePlaces {
 	private int horiz;
 	
 	
+	/** Calcule les emplacements de mots que contient la grille
+	 * 
+	 * @param grille Une grille remplie de mots ou pas 
+	 */
+	public GrillePlaces (Grille grille)
+	{
+		gr=grille;
+		places=new ArrayList<Emplacement>();
+		for (int i=0;i<grille.nbLig();i++)
+		{
+			cherchePlaces(getLig(i));
+		}
+		horiz=places.size();
+		for (int i=0;i<grille.nbCol();i++)
+		{
+			cherchePlaces(getCol(i));
+		}
+		int verti=places.size()-horiz;
+	}	
 	
 	private List<Case> getLig(int lig)
 	{
@@ -64,26 +83,7 @@ public class GrillePlaces {
 			places.add(e1);
 		}
 	}
-	
-	/** Calcule les emplacements de mots que contient la grille
-	 * 
-	 * @param grille Une grille remplie de mots ou pas 
-	 */
-	public GrillePlaces (Grille grille)
-	{
-		gr=grille;
-		places=new ArrayList<Emplacement>();
-		for (int i=0;i<grille.nbLig();i++)
-		{
-			cherchePlaces(getLig(i));
-		}
-		horiz=places.size();
-		for (int i=0;i<grille.nbCol();i++)
-		{
-			cherchePlaces(getCol(i));
-		}
-		int verti=places.size()-horiz;
-	}
+
 	
 	/** Recupere une liste de d'emplacement
 	 * 
@@ -116,6 +116,20 @@ public class GrillePlaces {
 			s=s+places.get(i);
 		}
 		return s;
+	}
+	
+	public GrillePlaces fixer (int m, String soluce)
+	{
+		Grille gr_copy=gr.copy();
+		List<Case> l = this.getPlaces().get(m).getCase();
+		int i=0;
+		for (Case le : l){
+			char lettre=soluce.charAt(i);
+			gr_copy.getCase(le.getLig(), le.getCol()).setChar(lettre);
+			i++;
+		}
+		GrillePlaces gr1=new GrillePlaces (gr_copy);
+		return gr1;
 	}
 }
 
