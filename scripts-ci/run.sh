@@ -6,16 +6,16 @@ TESTS_TME1="\
   pobj.motx.tme1.test.GrillePlacesTest \
 "
 
-#TESTS_TME2="\
-#  pobj.motx.tme2.test.DictionnaireTest \
-#  pobj.motx.tme2.test.GrillePotentielTest \
-#  pobj.motx.tme2.test.DictionnaireTest2 \
-#  pobj.motx.tme2.test.GrillePotentielTest2 \
-#  pobj.motx.tme2.test.GrillePotentielTest3 \
-#  pobj.motx.tme2.test.GrillePotentielTest4 \
-#  pobj.motx.tme2.test.GrillePotentielTest5 \
-#  pobj.motx.tme2.test.GrillePotentielTest6 \
-#"
+TESTS_TME2="\
+  pobj.motx.tme2.test.DictionnaireTest \
+  pobj.motx.tme2.test.GrillePotentielTest \
+  pobj.motx.tme2.test.DictionnaireTest2 \
+  pobj.motx.tme2.test.GrillePotentielTest2 \
+  pobj.motx.tme2.test.GrillePotentielTest3 \
+  pobj.motx.tme2.test.GrillePotentielTest4 \
+  pobj.motx.tme2.test.GrillePotentielTest5 \
+  pobj.motx.tme2.test.GrillePotentielTest6 \
+"
 
 #TESTS_TME3="\
 #  pobj.motx.tme3.test.GrilleSolverTest \
