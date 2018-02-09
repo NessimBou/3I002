@@ -46,7 +46,7 @@ public class Dictionnaire {
 		copy.mots.addAll(mots);
 
 		// TME 3 : ajout Cache pour charAt
-		//copy.cache = cache;
+		copy.cache = cache;
 
 		return copy;
 	}
@@ -70,7 +70,9 @@ public class Dictionnaire {
 		return cpt;
 	}
 
-	
+	/**
+	 * @return Taille du dico sous forme de String
+	 */
 	@Override
 	public String toString() {
 		if (size() == 1) {
@@ -80,6 +82,10 @@ public class Dictionnaire {
 		}
 	}
 
+	/**
+	 * @param path le chemin du dico
+	 * @return le dico chargé
+	 */
 	public static Dictionnaire loadDictionnaire(String path) {
 		Dictionnaire dico = new Dictionnaire();
 
@@ -92,6 +98,13 @@ public class Dictionnaire {
 		return dico;
 	}
 
+	/**
+	 * Modifie le dictionnaire pour ne garder que les mots dont la ième lettre est égale au caractère de l’argument c.
+	 * La méthode rend le nombre de mots qui ont été supprimés du dictionnaire.
+	 * @param expect
+	 * @param index la position de la lettre dans le mot
+	 * @return le nombre de mot retiré
+	 */
 	public int filtreParLettre(char expect, int index) {
 		List<String> res = new ArrayList<>();
 		int cpt = 0;
@@ -104,65 +117,77 @@ public class Dictionnaire {
 		}
 		mots = res;
 		// TME 3 : ajout Cache pour charAt
-//		if (cpt > 0) {
-//			clearCache();
-//		}
+		if (cpt > 0) {
+			clearCache();
+		}
 		return cpt;
 	}
 
 	// TME 2 ci dessous
 
-//	public EnsembleLettre charAt(int index) {
-//		if (mots.isEmpty()) {
-//			return new EnsembleLettre();
-//		}
-//		// TME 3 : ajout Cache pour charAt
-//		EnsembleLettre l = getCache()[index];
-//		if (l == null) {
-//
-//			// TME 2 : recherche simple
-//			l = new EnsembleLettre();
-//			for (String mot : mots) {
-//				l.add(mot.charAt(index));
-//			}
-//
-//			getCache()[index] = l;
-//		}
-//		return l;
-//	}
-//
-//	public int filtreParLettre(EnsembleLettre pot, int index) {
-//		List<String> res = new ArrayList<>();
-//		int cpt = 0;
-//		for (String mot : mots) {
-//			char c = mot.charAt(index);
-//			if (pot.contains(c)) {
-//				res.add(mot);
-//			} else {
-//				cpt++;
-//			}
-//		}
-//		mots = res;
-//		// TME 3 : ajout Cache pour charAt
-//		if (cpt > 0) {
-//			clearCache();
-//		}
-//		return cpt;
-//	}
-//
-//	// TME 3 : ajout Cache pour charAt
-//	private EnsembleLettre[] cache;
-//
-//	private EnsembleLettre[] getCache() {
-//		if (cache == null) {
-//			int motSize = mots.get(0).length();
-//			cache = new EnsembleLettre[motSize];
-//		}
-//		return cache;
-//	}
-//
-//	private void clearCache() {
-//		cache = null;
-//	}
-//
+	
+	/**
+	 * Ajoute dans un ensemble de lettre la lettre d'un mot en fonction de son indice
+	 * @param l'indice de la lettre
+	 * @return l'ensemble de lettre 
+	 */
+	public EnsembleLettre charAt(int index) {
+		if (mots.isEmpty()) {
+			return new EnsembleLettre();
+		}
+		// TME 3 : ajout Cache pour charAt
+		EnsembleLettre l = getCache()[index];
+		if (l == null) {
+
+			// TME 2 : recherche simple
+			l = new EnsembleLettre();
+			for (String mot : mots) {
+				l.add(mot.charAt(index));
+			}
+
+			getCache()[index] = l;
+		}
+		return l;
+	}
+	
+	/**
+	 * Méthode pour filtrer le dictionnaire par rapport à un indice i et un EnsembleLettre possible
+	 * @param pot Ensemble de lettre
+	 * @param index Indice 
+	 * @return nombre d'élément retiré 
+	 */
+	public int filtreParLettre(EnsembleLettre pot, int index) {
+		List<String> res = new ArrayList<>();
+		int cpt = 0;
+		for (String mot : mots) {
+			char c = mot.charAt(index);
+			if (pot.contains(c)) {
+				res.add(mot);
+			} else {
+				cpt++;
+			}
+		}
+		mots = res;
+		// TME 3 : ajout Cache pour charAt
+		if (cpt > 0) {
+			clearCache();
+		}
+		return cpt;
+	}
+
+	// TME 3 : ajout Cache pour charAt
+	private EnsembleLettre[] cache;
+
+	private EnsembleLettre[] getCache() {
+		if (cache == null) {
+			int motSize = mots.get(0).length();
+			cache = new EnsembleLettre[motSize];
+		}
+		return cache;
+	}
+
+	private void clearCache() {
+		cache = null;
+	}
+
 }
