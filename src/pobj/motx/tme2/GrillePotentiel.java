@@ -49,24 +49,30 @@ public class GrillePotentiel
 				cpt++;
 			}
 		}
-		//Gestion des contraintes
+
 		
-		// il ajoute bien les contraintes le probleme est qu'il implemente deux fois chaque contrante mais avec des identifiants different
-		//
+		// n = identifiant m1
 		int n=0;
-		
+		//Parcourt des emplacements horizontaux
 		for (int a=0;a<g1.getNbHorizontal();a++){
 			Emplacement e1=g1.getPlaces().get(a);
+			// m = identifiant m2
 			int m = 0; 
+			//on parcourt tous les emplacements
 			for(Emplacement e2 :g1.getPlaces()){
+				//on verifie que c'est pas les mêmes
 				if(e1 != e2){
+					// i = identifiant c1
+					//Si ce n'est pas les mêmes on parcourt toute les cases 
 					for(int i =0; i < e1.size(); i++){
+						
+						// j = identifiant c2
 						for(int j=0;j<e2.size();j++){
-							
+							// si c'est les mêmes cases on crée une nouvelle croix contrainte
 							if(e1.getCaseV2(i) == e2.getCaseV2(j)){
 								
 								CroixContrainte croisement = new CroixContrainte(n,i,m,j);
-								
+								//On verifie juste que contrainte ne contient pas croisement
 								if(!contraintes.contains(croisement)){
 									
 										contraintes.add(croisement);
@@ -81,8 +87,14 @@ public class GrillePotentiel
 			}
 			n++;
 		}
+		
+		
 	}
 	
+	/**Renvoie vrai si le mot croisé est pas possible
+	 * 
+	 * @return True/false
+	 */
 	public boolean isDead()
 	{
 		if(motsPot.size()!=g1.getPlaces().size())
