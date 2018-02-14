@@ -51,11 +51,12 @@ public class Emplacement {
 		lettres.add(c1);
 	}
 	
-	/** 
-	 * @return lettres, la liste des cases contenant les lettres 
-	 */
 	public List<Case> getCase(){
 		return lettres;
+	}
+	
+	public Case getCaseV2(int i){
+		return lettres.get(i);
 	}
 
 

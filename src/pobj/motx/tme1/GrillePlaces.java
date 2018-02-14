@@ -38,12 +38,8 @@ public class GrillePlaces {
 			cherchePlaces(getCol(i));
 		}
 		int verti=places.size()-horiz;
-	}
+	}	
 	
-	/**	Rendent les cases qui constituent une ligne ou une colonne donnée 
-	 * @param lig la ligne des cases que l'on veut recupérer
-	 * @return c1 la liste des cases de la ligne
-	 */
 	private List<Case> getLig(int lig)
 	{
 		List<Case> c1=new ArrayList<Case>();
@@ -54,10 +50,6 @@ public class GrillePlaces {
 		return c1;
 	}
 	
-	/**	Rendent les cases qui constituent une ligne ou une colonne donnée 
-	 * @param col la colonne des cases que l'on veut recupérer
-	 * @return c1 la liste des cases de la colonne
-	 */
 	private List<Case> getCol(int col)
 	{
 		List<Case> c1=new ArrayList<Case>();
@@ -67,10 +59,6 @@ public class GrillePlaces {
 		}
 		return c1;
 	}
-	
-	/**	Cherche les mots dans la liste de cases fournie (une ligne ou une colonne) et qui ajoute les emplacements de mot trouvés aux places de la grille.
-	 * @param cases la liste de cases fournie
-	 */
 	
 	private void cherchePlaces(List<Case> cases)
 	{
@@ -130,23 +118,6 @@ public class GrillePlaces {
 		return s;
 	}
 	
-	/**	
-	 * @return grille
-	 */
-	public Grille getGrille()
-	{
-		return gr;
-	}
-	
-	
-	/**	Rend une nouvelle grille où les cases constituant l’emplacement de mot d’indice m 
-	 * (dans la liste des emplacements de mots de la grille telle que retournée par getPlaces()) 
-	 * ont pour contenu les lettres de soluce.
-	 * @param m indice de l'emplacement où soluce doit être placé
-	 * @param soluce le mot à placer
-	 * @return grille avec soluce placé
-	 */
-
 	public GrillePlaces fixer (int m, String soluce)
 	{
 		Grille gr_copy=gr.copy();
@@ -157,12 +128,27 @@ public class GrillePlaces {
 			gr_copy.getCase(le.getLig(), le.getCol()).setChar(lettre);
 			i++;
 		}
-		GrillePlaces g1=new GrillePlaces (gr_copy);
-		//System.out.println(g1.getGrille());
-		return g1;
+		GrillePlaces gr1=new GrillePlaces (gr_copy);
+		return gr1;
 	}
 	
-	
-
+	public List<Emplacement>croisement(GrillePlaces grille){
+		List<Emplacement> croisement = new ArrayList<Emplacement>();
+		for(Emplacement e1 : grille.getPlaces()){
+			for(Emplacement e2 :grille.getPlaces()){
+				if(e1 != e2){
+					for(int i =0; i < e1.size(); i++){
+						for(int j=0;j<e2.size();j++)
+							if(e1.getCaseV2(i) == e2.getCaseV2(j)){
+								if (!croisement.contains(e1)){
+									croisement.add(e1);
+								}
+						}
+					}
+				}
+			}
+		}
+		return croisement;
+	}
 }
 

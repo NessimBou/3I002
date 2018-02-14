@@ -22,25 +22,25 @@ public class GrillePotentielTest4 {
 
 		Dictionnaire gut = Dictionnaire.loadDictionnaire("data/frgut.txt");
 		Grille gr = GrilleLoader.loadGrille("data/easy.grl");
-
+		//System.out.println("ok");
 		assertEquals(5, gr.nbCol());
 		assertEquals(5, gr.nbLig());
-
+		//System.out.println("ok");
 		// System.out.println(gr);
 
 		GrillePlaces grille = new GrillePlaces(gr);
-
+		//System.out.println("ok");
 		GrillePotentiel gp = new GrillePotentiel(grille, gut);
-
+		//System.out.println("ok");
 		assertTrue(!gp.isDead());
-
+		//System.out.println("ok");
 		
 
 		int[][] expected = { {0,2,2,0},
 				{1,2,2,4}};
 
 		checkContraintes(gp, expected);
-
+		System.out.println("ok");
 		System.out.println("Succès test GrillePotentiel : easy.");
 
 	}
@@ -50,10 +50,11 @@ public class GrillePotentielTest4 {
 		for (int []e : expected) {
 			// (m1,c1,m2,c2) dans cet ordre.
 			exp.add(new CroixContrainte(e[0], e[1], e[2], e[3]));
+			
+			
 		}
-		
 		assertEquals(expected.length, gp.getContraintes().size());
-		
+		System.out.println("ici aussi");
 		for (IContrainte c : gp.getContraintes()) {
 			// penser à définir public boolean equals(Object o) dans CroixContrainte.
 			assertTrue(exp.contains(c));

@@ -22,7 +22,7 @@ public class GrillePotentielTest3 {
 		assertEquals(5, gr.nbCol());
 		assertEquals(5, gr.nbLig());
 
-		//System.out.println(gr);
+		// System.out.println(gr);
 
 		GrillePlaces grille = new GrillePlaces(gr);
 
@@ -31,9 +31,7 @@ public class GrillePotentielTest3 {
 		assertTrue(gp.getMotsPot().get(2).size() > 1);
 
 		GrillePotentiel gp2 = gp.fixer(2, "chats");
-		
-		//System.out.println(gp2.getGrillePlaces().getGrille());
-		
+
 		assertTrue(gp.getMotsPot().get(2).size() > 1);
 
 		int[] expected = { 245, 302, 1 };
