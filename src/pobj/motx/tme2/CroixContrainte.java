@@ -60,6 +60,8 @@ public class CroixContrainte implements IContrainte {
 		return compteur;
 	}
 	
+
+	
 	public int getM1(){
 		return m1;
 	}
@@ -75,16 +77,25 @@ public class CroixContrainte implements IContrainte {
 	}	
 	
 	
-	public boolean equals(Object other)
-	{
-		if (other==this)
-			return true;
-		if (!(other instanceof CroixContrainte))
-			return false;
-		CroixContrainte c = (CroixContrainte) other;
-		return(c.m1==m1 && c.c1==c1 && c.m2==m2 && c.c2==c2);
-	}
-
 			
-		
+    public boolean equals(Object other){
+        if(this == other){
+            return true;
+        }
+        if(this.getClass()!=other.getClass()){
+
+            return false;
+        }
+        CroixContrainte obj = (CroixContrainte) other;
+        if((obj.m1 == this.m1)&&(obj.c1 == this.c1)&&(obj.m2 == this.m2)&&(obj.c2 == this.c2)){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+
+
+
 }
