@@ -15,6 +15,10 @@ public class GrillePotentielTest {
 	public static void testNombrePot(GrillePotentiel gp, int[] expected) {
 		assertEquals(expected.length, gp.getMotsPot().size());
 		for (int i = 0; i < expected.length; i++) {
+			System.out.println("-----------------");
+			System.out.println(gp.getMotsPot().get(i).size());
+			System.out.println(expected[i]);
+			System.out.println("-----------------");
 			assertEquals(expected[i], gp.getMotsPot().get(i).size());
 		}
 	}

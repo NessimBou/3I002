@@ -65,7 +65,9 @@ public class GrillePotentiel
 					// i = identifiant c1
 					//Si ce n'est pas les mêmes on parcourt toute les cases 
 					for(int i =0; i < e1.size(); i++){
-						
+						//e1.getcase(i) n'est pas vide
+						if (!e1.getCaseV2(i).isVide())
+							continue;
 						// j = identifiant c2
 						for(int j=0;j<e2.size();j++){
 							// si c'est les mêmes cases on crée une nouvelle croix contrainte
@@ -74,8 +76,10 @@ public class GrillePotentiel
 								CroixContrainte croisement = new CroixContrainte(n,i,m,j);
 								//On verifie juste que contrainte ne contient pas croisement
 								if(!contraintes.contains(croisement)){
-									
+										
 										contraintes.add(croisement);
+										croisement.reduce(this);
+										
 									
 		
 								}
@@ -87,7 +91,6 @@ public class GrillePotentiel
 			}
 			n++;
 		}
-		
 		
 	}
 	

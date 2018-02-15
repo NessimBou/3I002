@@ -62,7 +62,7 @@ public class GrillePotentielTest5 {
 		int[] expected = { 5916, 5688 , 5916};
 
 		testNombrePot(gp, expected);
-
+		
 		System.out.println("Succès test GrillePotentiel : easy.");
 
 	}

@@ -31,9 +31,9 @@ public class EnsembleLettre {
 	 * @param c2 Un ensemble lettre
 	 * @return La liste des characteres de l'intersection
 	 */
-	public List<Character> intersection(EnsembleLettre c2){
-		List<Character> c3 = this.c1;
-		c3.retainAll(c2.getEnsemble());
+	public EnsembleLettre intersection(EnsembleLettre c2){
+		EnsembleLettre c3 = new EnsembleLettre(this.c1);
+		c3.getEnsemble().retainAll(c2.getEnsemble());
 		return c3;
 	}
 	
