@@ -8,7 +8,6 @@ public class EnsembleLettre {
 	private List<Character> c1 = new ArrayList<Character>();
 	
 	public EnsembleLettre(){
-		
 	}
 	
 	public EnsembleLettre(List<Character> c1){
@@ -31,11 +30,18 @@ public class EnsembleLettre {
 	 * @param c2 Un ensemble lettre
 	 * @return La liste des characteres de l'intersection
 	 */
-	public EnsembleLettre intersection(EnsembleLettre c2){
-		EnsembleLettre c3 = new EnsembleLettre(this.c1);
-		c3.getEnsemble().retainAll(c2.getEnsemble());
-		return c3;
+	
+	public EnsembleLettre intersection(EnsembleLettre e2){
+		List<Character> inter = new ArrayList<Character>();
+		
+		for(Character c1: this.getEnsemble()){
+			if(e2.contains(c1)){
+				inter.add(c1);
+			}
+		}
+		return new EnsembleLettre(inter);
 	}
+
 	
 	public List<Character> getEnsemble(){
 		return c1;

@@ -51,12 +51,21 @@ public class Emplacement {
 		lettres.add(c1);
 	}
 	
-	public List<Case> getCase(){
+	public Case getCase(int n){
+		return lettres.get(n);
+	}
+	
+	public List<Case> getlettres(){
 		return lettres;
 	}
 	
-	public Case getCaseV2(int i){
-		return lettres.get(i);
+	
+	public boolean isVertical(){
+		return (this.getCase(0).getLig())<(this.getCase(1).getLig());
+	}
+	
+	public boolean isHorizontal(){
+		return (this.getCase(0).getCol())<(this.getCase(1).getCol());
 	}
 
 

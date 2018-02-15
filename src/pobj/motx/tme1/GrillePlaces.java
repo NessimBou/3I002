@@ -121,7 +121,7 @@ public class GrillePlaces {
 	public GrillePlaces fixer (int m, String soluce)
 	{
 		Grille gr_copy=gr.copy();
-		List<Case> l = this.getPlaces().get(m).getCase();
+		List<Case> l = this.getPlaces().get(m).getlettres();
 		int i=0;
 		for (Case le : l){
 			char lettre=soluce.charAt(i);
@@ -139,7 +139,7 @@ public class GrillePlaces {
 				if(e1 != e2){
 					for(int i =0; i < e1.size(); i++){
 						for(int j=0;j<e2.size();j++)
-							if(e1.getCaseV2(i) == e2.getCaseV2(j)){
+							if(e1.getCase(i) == e2.getCase(j)){
 								if (!croisement.contains(e1)){
 									croisement.add(e1);
 								}

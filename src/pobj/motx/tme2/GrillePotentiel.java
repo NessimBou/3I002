@@ -11,100 +11,69 @@ public class GrillePotentiel
 {
 	private GrillePlaces g1;
 	private Dictionnaire d1;
-	private List<Dictionnaire> motsPot = new ArrayList<Dictionnaire>();
-	private List<IContrainte> contraintes = new ArrayList<IContrainte>();
-/*	
-	public GrillePotentiel(GrillePlaces grille, Dictionnaire dicoComplet)
-	{
-		g1=grille;
-		d1=dicoComplet;
-		Dictionnaire dcopy;
-		
-			+
-		for(Emplacement i : g1.getPlaces()){
-			int taillemot=i.size();
-			dcopy= d1.copy();
-			dcopy.filtreLongueur(taillemot);
-			motsPot.add(dcopy);
-		}
-	}
-*/
-	
+	private List<Dictionnaire> motsPot;
+	private List<IContrainte> contraintes;
 	
 	public GrillePotentiel(GrillePlaces grille, Dictionnaire dicoComplet){
 		g1 = grille;
-		d1= dicoComplet;
-		Dictionnaire dcopy;
-			
-		for(Emplacement i : g1.getPlaces()){
-			int cpt = 0;
-			int taillemot=i.size();
-			dcopy= d1.copy();
-			dcopy.filtreLongueur(taillemot);
-			motsPot.add(dcopy);
-			for(Case c : i.getCase() ){
-				if(!c.isVide() && !c.isPleine()){
-					dcopy.filtreParLettre(c.getChar(),cpt);
+		d1 = dicoComplet;
+		motsPot = new ArrayList<Dictionnaire>();
+		contraintes = new ArrayList<IContrainte>();
+		Dictionnaire copie;
+		for(Emplacement e:g1.getPlaces())
+		{
+			copie=d1.copy();
+			copie.filtreLongueur(e.size());
+			for(int i=0;i<e.size();i++)
+			{
+				if(!(e.getCase(i).isPleine())&&!(e.getCase(i).isVide()))
+				{
+					copie.filtreParLettre(e.getCase(i).getChar(),i);
 				}
-				cpt++;
 			}
+			motsPot.add(copie);
 		}
-
-		
-		// n = identifiant m1
-		int n=0;
-		//Parcourt des emplacements horizontaux
-		for (int a=0;a<g1.getNbHorizontal();a++){
-			Emplacement e1=g1.getPlaces().get(a);
-			// m = identifiant m2
-			int m = 0; 
-			//on parcourt tous les emplacements
-			for(Emplacement e2 :g1.getPlaces()){
-				//on verifie que c'est pas les mêmes
-				if(e1 != e2){
-					// i = identifiant c1
-					//Si ce n'est pas les mêmes on parcourt toute les cases 
-					for(int i =0; i < e1.size(); i++){
-						//e1.getcase(i) n'est pas vide
-						if (!e1.getCaseV2(i).isVide())
-							continue;
-						// j = identifiant c2
-						for(int j=0;j<e2.size();j++){
-							// si c'est les mêmes cases on crée une nouvelle croix contrainte
-							if(e1.getCaseV2(i) == e2.getCaseV2(j)){
-								
-								CroixContrainte croisement = new CroixContrainte(n,i,m,j);
-								//On verifie juste que contrainte ne contient pas croisement
-								if(!contraintes.contains(croisement)){
-										
-										contraintes.add(croisement);
-										croisement.reduce(this);
-										
-									
-		
-								}
+		int m1=0;
+		for(Emplacement e1:g1.getPlaces())
+		{
+			int m2=0;
+			for(Emplacement e2:g1.getPlaces())
+			{
+				if(e1.isHorizontal()&& e2.isVertical())
+				{
+					for(int c1=0;c1<e1.size();c1++)
+					{
+						for(int c2=0;c2<e2.size();c2++)
+						{
+							if((e1.getCase(c1)==e2.getCase(c2))&&(e1.getCase(c1).isVide()))
+							{
+								contraintes.add(new CroixContrainte(m1,c1,m2,c2));
 							}
 						}
 					}
 				}
-				m++;
+				m2++;
 			}
-			n++;
+			m1++;
 		}
-		
+		propage();
 	}
+
 	
 	/**Renvoie vrai si le mot croisé est pas possible
 	 * 
 	 * @return True/false
 	 */
+	
 	public boolean isDead()
 	{
-		if(motsPot.size()!=g1.getPlaces().size())
-			return true;
+		for(Dictionnaire d:motsPot)
+		{
+			if(d.size()==0)
+				return true;
+		}
 		return false;
 	}
-	
 	
 	/**Retourne la liste de dictionnaire
 	 * 
@@ -134,5 +103,24 @@ public class GrillePotentiel
 	{
 		return contraintes;
 	}
-
+	
+	private boolean propage()
+	{
+		while(true)
+		{
+			int cpt=0;
+			for(IContrainte ic: contraintes)
+			{
+				cpt=cpt+ic.reduce(this);
+			}
+			if(this.isDead())
+			{
+				return false;
+			}
+			if(cpt==0)
+			{
+				return true;
+			}
+		}
+	}
 }
