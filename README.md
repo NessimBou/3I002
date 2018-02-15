@@ -4,8 +4,8 @@
 
 
 À remplir obligatoirement :
-* _nom du binôme 1_
-* _nom du binôme 2_
+* TANG Fabien
+* BOUTAR Nessim
 
 Instructions succinctes de rendu :
 * ajoutez au projet toutes les classes Java demandées par l'énoncé ;
