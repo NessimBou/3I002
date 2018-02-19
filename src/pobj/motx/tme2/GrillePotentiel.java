@@ -13,6 +13,7 @@ public class GrillePotentiel
 	private Dictionnaire d1;
 	private List<Dictionnaire> motsPot;
 	private List<IContrainte> contraintes;
+
 	
 	public GrillePotentiel(GrillePlaces grille, Dictionnaire dicoComplet){
 		g1 = grille;

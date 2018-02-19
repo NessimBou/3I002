@@ -36,6 +36,10 @@ public class Dictionnaire {
 	public String get(int i) {
 		return mots.get(i);
 	}
+	
+	public List<String> getMots(){
+		return mots;
+	}
 
 	/**
 	 * Rend une copie de ce Dictionnaire.
@@ -148,6 +152,7 @@ public class Dictionnaire {
 //		}
 		return cpt;
 	}
+
 
 //	// TME 3 : ajout Cache pour charAt
 //	private EnsembleLettre[] cache;
